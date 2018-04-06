@@ -1,0 +1,22 @@
+CC=gcc
+CFLAGS=-std=c99 -c -Wall -Werror
+SOURCES=parser.c Tree.c Stack.c
+OBJECTS=$(SOURCES:.c=.o)
+
+all: a.out
+	./a.out
+
+a.out: parser.o Tree.o Stack.o
+	$(CC) -std=c99 -Wall -Werror parser.o Tree.o Stack.o
+
+parser.o: parser.c parser.h
+	$(CC) $(CFLAGS) parser.c
+
+Tree.o: Tree.c Tree.h
+	$(CC) $(CFLAGS) Tree.c
+
+Stack.o: Stack.c Stack.h
+	$(CC) $(CFLAGS) Stack.c
+
+clean:
+	rm a.out *.o
